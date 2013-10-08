@@ -66,7 +66,7 @@ io.sockets.on('connection', function(socket){
 
 /////// ADD ALL YOUR ROUTES HERE  /////////
 app.get('/', function (req, res, next) {
-    res.render('home');
+    res.render('index');
 });
 
 //A Route for Creating a 500 Error (Useful to keep around)
