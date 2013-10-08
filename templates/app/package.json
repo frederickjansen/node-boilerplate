@@ -1,0 +1,19 @@
+{
+    "name": "E90 HW05_1",
+    "description": "Harvard Extension E90 HW05_1",
+    "author": "Frederick Jansen <frederick.jansen@gmail.com>",
+    "version": "0.0.1",
+    "dependencies": {
+        "connect": "2.9.x",
+        "express": "3.4.x",
+        "socket.io": "1.0.x",
+        "express3-handlebars": "0.5.x",
+        "express-state": "1.0.x"
+    },
+    "devDependencies": {
+        "vows": "0.5.x",
+        "mocha": "*",
+        "should": "*"
+    },
+    "engine": "node >= 0.8.x"
+}

@@ -1,6 +1,7 @@
-Node Boilerplate
-=================
-node-boilerplate takes html-boilerplate, express, connect and Socket.IO and organizes them into a ready to use website project. Its a fast way to get working on your Node website without having to worry about the setup. It takes care of all the boring parts, like setting up your views, 404 page, 500 page, getting the modules organized, etc... 
+Node Boilerplate Version 2
+==========================
+*Requires Node v0.8.x (or newer)*
+node-boilerplate takes html-boilerplate, express, connect, jade and Socket.IO and organizes them into a ready to use website project. It's a fast way to get working on your Node website without having to worry about the setup. It takes care of all the boring parts, like setting up your views, 404 page, 500 page, getting the modules organized, etc... 
 
 Node Boilerplate has 4 goals:
 
@@ -8,6 +9,44 @@ Node Boilerplate has 4 goals:
 2. To never install anything outside of the project directory (For easier production deployment)
 3. To make it easy to install additional modules within the project directory
 4. To enable easy upgrade or freezing of project dependencies  
+(These goals are much easier to meet now that node includes the node_modules convention)
+
+To start a project:
+		
+		git clone git://github.com/robrighter/node-boilerplate.git mynewproject
+		cd mynewproject
+		./initproject.sh
+This will copy down all of the boilerplate files, organize them appropriately and init a fresh new git repository within which you can build your next big thing.
+
+
+To run the boilerplate template app:
+
+		node server.js
+
+Go to http://0.0.0.0:8081 and click on the send message link to see socket.io in action.
+
+
+Additional Features:
+
+1. Creates a package.json file consistent with associated best practices (http://blog.nodejitsu.com/package-dependencies-done-right)
+2. Adds .gitignore for the node_modules directory
+3. Includes 404 page and associated route
+4. Includes 500 page
+
+To add additional modules:
+
+Update the package.json file to include new module dependencies and run 'npm install'.
+
+**If you have a different set of default modules that you like to use, the structure is setup such that you can fork the project and replace the module dependencies outlined in the ./templates/apps/package.json file to best fit your needs and the initproject.sh script will initialize projects with your new set of modules.**
+
+Deployment
+===============
+
+node-boilerplate is setup to be easily deployed on a Joyent Node SmartMachine. This means that:
+
+1. The version of Node is defined in config.json and in package.json
+2. The main script to run is server.js
+3. The web server port is pulled from process.env.PORT 
 
 Differences between this fork and the [original](https://github.com/robrighter/node-boilerplate)
 ----------------------------------------------
@@ -16,27 +55,4 @@ Currently, the differences are:
 
 * Uses [Express 3.x](https://github.com/visionmedia/express/wiki/Migrating-from-2.x-to-3.x) as opposed to 2.x
 * Uses Handlebars [(express3-handlebars)](https://github.com/ericf/express3-handlebars) instead of Jade
-* Uses [YUI](http://yuilibrary.com) instead of jQuery on the client (although you can change this in 2 lines of code)
-* Uses [express-state](https://github.com/yahoo/express-state) to expose data from the server to the client. 
-
-To run the boilerplate template app:
-
-```shell
-    $ git clone github.com/tilomitra/node-boilerplate/ <your-app-folder-name>
-    $ npm install
-    $ npm start
-```
-
-Go to [http://localhost:8000](http://localhost:8000) and click on the send message link to see socket.io in action.
-
-### But I don't need socket.io!
-
-If you don't need Socket.io, then just get rid of the socket.io calls from `server.js`, remove the client-side code in `script.js`, and the socket.io client-side library that exists in `layouts/main.handlebars`.
-
-### Want to use jQuery or another front-end library?
-
-Just go into `main.handlebars` and add the library that you want. Then, you can modify `script.js` with your custom JavaScript code. 
-
-LICENSE
--------
-This software is free to use under the Yahoo! Inc. BSD license. See the LICENSE file for license text and copyright information.
+* Uses [express-state](https://github.com/yahoo/express-state) to expose data from the server to the client.

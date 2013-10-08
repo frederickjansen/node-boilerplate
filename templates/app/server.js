@@ -9,8 +9,8 @@ var http    = require('http'),
     port    = (process.env.PORT || 8000),
     server  = app.listen(port, 'localhost'),
 
-    //remove this if you don't need socket.io
-    io = require('socket.io').listen(server); 
+//remove this if you don't need socket.io
+    io = require('socket.io').listen(server);
 
 //Setup Express App
 state.extend(app);
@@ -24,7 +24,7 @@ app.set('state namespace', 'ProjectName');
 
 //Create an empty Data object and expose it to the client. This
 //will be available on the client under ProjectName.Data
-app.expose({}, 'Data'); 
+app.expose({}, 'Data');
 
 app.configure(function(){
     app.set('views', __dirname + '/views');
@@ -34,29 +34,29 @@ app.configure(function(){
     app.use(connect.static(__dirname + '/static'));
     app.use(app.router);
     app.use(function(err, req, res, next){
-      // if an error occurs Connect will pass it down
-      // through these "error-handling" middleware
-      // allowing you to respond however you like
-      if (err instanceof NotFound) {
-          res.render('404');
-      } 
-      else {
-          res.render('500');
-      }
+        // if an error occurs Connect will pass it down
+        // through these "error-handling" middleware
+        // allowing you to respond however you like
+        if (err instanceof NotFound) {
+            res.render('404');
+        }
+        else {
+            res.render('500');
+        }
     })
 });
 
 //Setup Socket.IO
 //You can remove this whole chunk if you don't want socket.io
 io.sockets.on('connection', function(socket){
-  console.log('Client Connected');
-  socket.on('message', function(data){
-    socket.broadcast.emit('app_message',data);
-    socket.emit('app_message',data);
-  });
-  socket.on('disconnect', function(){
-    console.log('Client Disconnected.');
-  });
+    console.log('Client Connected');
+    socket.on('message', function(data){
+        socket.broadcast.emit('app_message',data);
+        socket.emit('app_message',data);
+    });
+    socket.on('disconnect', function(){
+        console.log('Client Disconnected.');
+    });
 });
 
 
